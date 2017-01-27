@@ -1,0 +1,45 @@
+body {
+  background-color: #313636;
+  color: #eff0f1;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #242828;
+}
+
+li{
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #eff0f1;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover{
+  background-color: #000000;
+}
+
+/*
+button{
+  color: #eff0f1;
+  border-radius: 4px;
+}
+.buttonActionBar{
+  background-color: green;
+  border: 2px solid green;
+  transition-duration: 0.4s;
+  font-size: 20px;
+  padding: 10px 30px;
+}
+.buttonActionBar:hover {
+  background-color: red;
+}
+*/
