@@ -29,4 +29,41 @@ controllers.MainController = function ($scope)
   $scope.testMessage = 'TEST NACHRICHT TEST';
 };
 
+controllers.NavigationController = function ($scope)
+{
+  var active = 'navigationActive';
+  init(); // Aufrufen der Initialisierungs Funktion des Navigation Controllers
+
+  function init()
+  {
+    clearVars();
+    $scope.varHomeLinkClass = active; // Home ist default Startseite
+  }
+  
+  function clearVars()
+  {
+    $scope.varHomeLinkClass = '';
+    $scope.varContactLinkClass = '';
+    $scope.varAboutLinkClass = '';
+  }
+
+  $scope.homeLinkClicked = function()
+  {
+    clearVars();
+    $scope.varHomeLinkClass = active;
+  }
+
+  $scope.contactLinkClicked = function()
+  {
+    clearVars();
+    $scope.varContactLinkClass = active;
+  }
+
+  $scope.aboutLinkClicked = function()
+  {
+    clearVars();
+    $scope.varAboutLinkClass = active;
+  }
+};
+
 mainApp.controller(controllers);
