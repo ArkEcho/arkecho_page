@@ -5,40 +5,36 @@
 
 html, body {
   font-family: Arial;
-  text-align: center;
   color: #eff0f1;
-  background-color: #313636;
   overflow-y: scroll;
 }
 
-#left{
-  position: absolute;
-  left: 10px;
-  top: 60px;
-  width: 100px;
-}
-
-#right{
-  position: absolute;
-  right: 10px;
-  top: 60px;
-  width: 100px;
-}
-
 #content{
+  background-color: #313636;
+  text-align: left;
   position: absolute;
-  left: 120px;
-  right: 120px;
-  margin-top: 40px;
+  left: 150px;
+  right: 0px;
+  top: 48px;
   padding: 20px;
+}
+
+#sidebar{
+  background-color: #242828;
+  text-align: left;
+  position: fixed;
+  top: 48px;
+  width: 150px;
+  height: 100%;
 }
 
 #navigation{
   background-color: #242828; /* NOTE: Farbe der Navigation Bar */
+  text-align: center;
+  position: fixed;
   width: 100%; /* NOTE: Ganze Breite der Seite */
   height: 48px; /* NOTE: Abhängig von grösse des Textes der li's */
-  position: fixed;
-  top: 0;
+  top: 0px;
   z-index: 1;
 }
 
