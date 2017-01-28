@@ -6,14 +6,17 @@ mainApp.config(function($routeProvider)
   $routeProvider
     .when('/',
       {
+        controller: 'HomeController',
         templateUrl: 'views/viewHome.html'
       })
     .when('/contact',
       {
+        controller: 'ContactController',
         templateUrl: 'views/viewContact.html'
       })
     .when('/about',
       {
+        controller: 'AboutController',
         templateUrl: 'views/viewAbout.html'
       })
     .otherwise({redirectTo: '/'});
@@ -21,6 +24,18 @@ mainApp.config(function($routeProvider)
 
 // Controller Definition
 var controllers = {};
+
+controllers.HomeController = function($scope)
+{
+};
+
+controllers.ContactController = function($scope)
+{
+};
+
+controllers.AboutController = function($scope)
+{
+};
 
 controllers.NavigationController = function ($scope)
 {

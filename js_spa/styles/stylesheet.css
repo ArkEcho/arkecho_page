@@ -6,8 +6,9 @@
 html, body {
   font-family: Arial;
   text-align: center;
-  background-color: #313636;
   color: #eff0f1;
+  background-color: #313636;
+  overflow-y: scroll;
 }
 
 #left{
@@ -51,10 +52,15 @@ html, body {
   float: left; /* NOTE: li's horizontal anordnen */
 }
 
+#navigation li img{
+  height: 48px;
+}
+
 #navigation li a {
   display: block;
   color: #eff0f1;
   text-align: center;
+  width: 60px;
   padding: 14px 16px;
   text-decoration: none; /* NOTE: Keine Hyperlink hilighting */
 }
