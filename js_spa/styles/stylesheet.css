@@ -4,13 +4,13 @@
 }
 
 html, body {
+  background-color: #313636;
   font-family: Arial;
   color: #eff0f1;
   overflow-y: scroll;
 }
 
 #content{
-  background-color: #313636;
   text-align: left;
   position: absolute;
   left: 150px;
@@ -46,6 +46,10 @@ html, body {
 
 #navigation li{
   float: left; /* NOTE: li's horizontal anordnen */
+}
+
+#navigation li h2{
+  padding: 10px;
 }
 
 #navigation li img{
