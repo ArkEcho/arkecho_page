@@ -6,17 +6,14 @@ mainApp.config(function($routeProvider)
   $routeProvider
     .when('/',
       {
-        controller: 'MainController',
         templateUrl: 'views/viewHome.html'
       })
     .when('/contact',
       {
-        controller: 'MainController',
         templateUrl: 'views/viewContact.html'
       })
     .when('/about',
       {
-        controller: 'MainController',
         templateUrl: 'views/viewAbout.html'
       })
     .otherwise({redirectTo: '/'});
@@ -24,13 +21,10 @@ mainApp.config(function($routeProvider)
 
 // Controller Definition
 var controllers = {};
-controllers.MainController = function ($scope)
-{
-  $scope.testMessage = 'TEST NACHRICHT TEST';
-};
 
 controllers.NavigationController = function ($scope)
 {
+  $scope.testMessage = 'TEST NACHRICHT TEST';
   var active = 'navigationActive';
   init(); // Aufrufen der Initialisierungs Funktion des Navigation Controllers
 
@@ -39,7 +33,7 @@ controllers.NavigationController = function ($scope)
     clearVars();
     $scope.varHomeLinkClass = active; // Home ist default Startseite
   }
-  
+
   function clearVars()
   {
     $scope.varHomeLinkClass = '';
@@ -47,19 +41,19 @@ controllers.NavigationController = function ($scope)
     $scope.varAboutLinkClass = '';
   }
 
-  $scope.homeLinkClicked = function()
+  $scope.home = function()
   {
     clearVars();
     $scope.varHomeLinkClass = active;
   }
 
-  $scope.contactLinkClicked = function()
+  $scope.contact = function()
   {
     clearVars();
     $scope.varContactLinkClass = active;
   }
 
-  $scope.aboutLinkClicked = function()
+  $scope.about = function()
   {
     clearVars();
     $scope.varAboutLinkClass = active;

@@ -8,12 +8,12 @@
     <script src="scripts/main.js"></script>
     <title>Ultra Velociraptor</title>
   </head>
-  <body>
-    <div id="navigation" data-ng-controller="NavigationController">
+  <body data-ng-controller="NavigationController">
+    <div id="navigation">
       <ul>
-        <li> <a data-ng-class="varHomeLinkClass" data-ng-click="homeLinkClicked()" href="#!">Home</a></li>
-        <li> <a data-ng-class="varContactLinkClass" data-ng-click="contactLinkClicked()" href="#!contact">Contact</a></li>
-        <li> <a data-ng-class="varAboutLinkClass" data-ng-click="aboutLinkClicked()" href="#!about">About</a></li>
+        <li> <a data-ng-class="varHomeLinkClass" href="#!">Home</a></li>
+        <li> <a data-ng-class="varContactLinkClass" href="#!contact">Contact</a></li>
+        <li> <a data-ng-class="varAboutLinkClass" href="#!about">About</a></li>
       </ul>
     </div>
     <div id="left">
