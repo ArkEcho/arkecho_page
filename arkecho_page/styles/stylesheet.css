@@ -46,7 +46,7 @@ html, body {
   background-color: #242828;
 }
 
-#navigation{
+#actionbar{
   background-color: #242828; /* NOTE: Farbe der Navigation Bar */
   text-align: center;
   position: fixed;
@@ -56,26 +56,26 @@ html, body {
   z-index: 1;
 }
 
-#navigation ul{
+#actionbar ul{
   display: inline-block; /* NOTE: Zum zentrieren der li's; nur bei vertikaler anordnung*/
   list-style-type: none; /* NOTE: Kein Aufzählungszeichen */
   overflow: hidden;
 }
 
-#navigation li{
+#actionbar li{
   float: left; /* NOTE: li's vertikal anordnen */
   height: 48px;
 }
 
-#navigation li h2{
+#actionbar li h2{
   padding: 10px;
 }
 
-#navigation li img{
+#actionbar li img{
   height: 48px;
 }
 
-#navigation li a {
+#actionbar li a {
   display: block;
   color: #eff0f1;
   text-align: center;
@@ -85,11 +85,11 @@ html, body {
   text-decoration: none; /* NOTE: Keine Hyperlink hilighting */
 }
 
-#navigation li a img{
+#actionbar li a img{
   height: 40px;
 }
 
-#navigation li a:hover:not(.navigationActive){
+#actionbar li a:hover:not(.navigationActive){
   background-color: #3daee9;
 }
 
