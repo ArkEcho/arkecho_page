@@ -14,10 +14,10 @@ controllers.ConnectionController = function($scope)
       MT_SEND_SONG_ACTUAL = 6
   }*/
 
-  var webSocket_;
+  var webSocket_ = new WebSocket('ws://0');
   var open_ = false;
 
-  openConnection('192.168.0.59:1000');
+  //openConnection('192.168.0.59:1000');
 
   function openConnection(address)
   {
