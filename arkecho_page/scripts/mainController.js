@@ -1,34 +1,9 @@
-var mainApp = angular.module('mainApp', ['ngRoute']);
-
-// Routing
-mainApp.config(function($routeProvider)
-{
-  $routeProvider
-    .when('/',
-      {
-        controller: 'HomeController',
-        templateUrl: 'views/viewHome.html'
-      })
-    .when('/contact',
-      {
-        controller: 'ContactController',
-        templateUrl: 'views/viewContact.html'
-      })
-    .when('/about',
-      {
-        controller: 'AboutController',
-        templateUrl: 'views/viewAbout.html'
-      })
-    .otherwise({redirectTo: '/'});
-});
-
 // Controller Definition
 var controllers = {};
 
 controllers.ConnectionController = function($scope)
 {
-  /*
-  enum MESSAGETYPE
+  /*enum MESSAGETYPE
   {
       MT_NOTDEFINED = 0,
       MT_ECHO_TEST = 1,
@@ -37,14 +12,12 @@ controllers.ConnectionController = function($scope)
       MT_FORWARD = 4,
       MT_REQUEST_SONG_ACTUAL = 5,
       MT_SEND_SONG_ACTUAL = 6
-  }
-  */
+  }*/
 
   var webSocket_;
-  var webSocketOpen_ = false;
+  var open_ = false;
 
   openConnection('192.168.0.59:1000');
-  //sendMessage('2', '');
 
   function openConnection(address)
   {
@@ -58,29 +31,37 @@ controllers.ConnectionController = function($scope)
 
   function sendMessage(type, message)
   {
-    var json = '{ "Typ": ' + type + ', "Message": "' + message + '" }';
+    if(open_ == false) return;
+    var json = '{ "Type": ' + type + ', "Message": "' + message + '" }';
     webSocket_.send(json);
   }
-  /*
-  webSocket.onopen = function (evt) {
+
+  webSocket_.onopen = function (evt) {
     //alert("Connected..");
+    open_ = true;
+    sendMessage('5', '');
   }
 
-  webSocket.onclose = function (evt) {
+  webSocket_.onclose = function (evt) {
     //alert("Disconnected...");
+    open_ = false;
   }
 
-  webSocket.onmessage = function (evt) {
+  webSocket_.onmessage = function (evt) {
     var json = JSON.parse(evt.data);
-    var type = json.Typ;
+    var type = json.Type;
     var message = json.Message;
-    //alert(out);
+    if(type == 6)
+    {
+      var song = JSON.parse(message);
+      //alert(song.SongInterpret + song.SongTitle);
+    }
   }
 
-  webSocket.onerror = function (evt) {
-    alert("Error...");
+  webSocket_.onerror = function (evt) {
+    //alert("Error...");
+    open_ = false;
   }
-  */
 };
 
 controllers.HomeController = function($scope)
@@ -98,13 +79,6 @@ controllers.AboutController = function($scope)
 controllers.NavigationController = function ($scope)
 {
   var active = 'navigationActive';
-  init(); // Aufrufen der Initialisierungs Funktion des Navigation Controllers
-
-  function init()
-  {
-    clearVars();
-    $scope.varHomeLinkClass = active; // Home ist default Startseite
-  }
 
   function clearVars()
   {
