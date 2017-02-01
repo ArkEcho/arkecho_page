@@ -53,8 +53,6 @@
     <Content Include="views\viewAbout.html" />
     <Content Include="views\viewContact.html" />
     <Content Include="views\viewHome.html" />
-    <Content Include="_OLD\app.css" />
-    <Content Include="_OLD\index.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
