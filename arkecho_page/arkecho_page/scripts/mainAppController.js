@@ -1,34 +1,69 @@
+/*enum MESSAGETYPE
+{
+    MT_NOTDEFINED = 0,
+    MT_ECHO_TEST = 1,
+    MT_PLAY_PAUSE = 2,
+    MT_BACKWARD = 3,
+    MT_FORWARD = 4,
+    MT_REQUEST_SONG_ACTUAL = 5,
+    MT_SEND_SONG_ACTUAL = 6
+}*/
+
 // Controller Definition
 var controllers = {};
 
-controllers.ConnectionController = function($scope)
+controllers.ConnectionController = function($scope, $route)
 {
-    /*enum MESSAGETYPE
-    {
-        MT_NOTDEFINED = 0,
-        MT_ECHO_TEST = 1,
-        MT_PLAY_PAUSE = 2,
-        MT_BACKWARD = 3,
-        MT_FORWARD = 4,
-        MT_REQUEST_SONG_ACTUAL = 5,
-        MT_SEND_SONG_ACTUAL = 6
-    }*/
+    /* Refresh Timer to show the Actual Song Info after Receive */
+    setInterval(function () {
+        $scope.songTitle = actualSongInfo_.songTitle
+        $scope.songInterpret = actualSongInfo_.songInterpret;
+        $scope.albumTitle = actualSongInfo_.albumTitle;
+        $scope.albumInterpret = actualSongInfo_.albumInterpret;
+        //document.getElementById('coverArt').setAttribute('src', 'data:image/png;base64,' + actualSongInfo_.coverArt);
+        $route.reload()
+    }, 1000);
     
-    var webSocket_ = new WebSocket('ws://0');
+    var webSocket_;
     var open_ = false;
+    var actualSongInfo_ = { songTitle:'', songInterpret:'', albumTitle:'', albumInterpret:'', coverArt:'' };
 
     $scope.connectClicked = function()
     {
         var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!');
-        if(address != '')
-        {
-            openConnection(address);
-        }
+        if(address != '') openConnection(address);
     }
 
     function openConnection(address)
     {
         webSocket_ = new WebSocket('ws://' + address);
+
+        webSocket_.onopen = function (evt) {
+            open_ = true;
+            sendMessage('5', '');
+        }
+
+        webSocket_.onclose = function (evt) {
+            open_ = false;
+        }
+
+        webSocket_.onmessage = function (evt) {
+            var json = JSON.parse(evt.data);
+            var type = json.Type;
+            var message = json.Message;
+            if (type == 6) {
+                var song = JSON.parse(message);
+                actualSongInfo_.songTitle = song.SongTitle;
+                actualSongInfo_.songInterpret = song.SongInterpret;
+                actualSongInfo_.albumTitle = song.AlbumTitle;
+                actualSongInfo_.albumInterpret = song.AlbumInterpret;
+                actualSongInfo_.coverArt = song.CoverArt;
+            }
+        }
+
+        webSocket_.onerror = function (evt) {
+            open_ = false;
+        }
     }
 
     function closeConnection()
@@ -41,36 +76,6 @@ controllers.ConnectionController = function($scope)
         if(open_ == false) return;
         var json = '{ "Type": ' + type + ', "Message": "' + message + '" }';
         webSocket_.send(json);
-    }
-
-    webSocket_.onopen = function (evt) {
-        //alert("Connected..");
-        open_ = true;
-        sendMessage('5', '');
-        changeStatusColor();
-    }
-
-    webSocket_.onclose = function (evt) {
-        //alert("Disconnected...");
-        open_ = false;
-        changeStatusColor();
-    }
-
-    webSocket_.onmessage = function (evt) {
-        var json = JSON.parse(evt.data);
-        var type = json.Type;
-        var message = json.Message;
-        if(type == 6)
-        {
-            var song = JSON.parse(message);
-            //alert(song.SongInterpret + song.SongTitle);
-        }
-    }
-
-    webSocket_.onerror = function (evt) {
-        //alert("Error...");
-        open_ = false;
-        changeStatusColor();
     }
 };
 
