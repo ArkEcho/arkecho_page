@@ -35,3 +35,7 @@
 #playerControl li a:hover{
   background-color: #3daee9;
 }
+
+.hiddenImage{
+    display: none;
+}

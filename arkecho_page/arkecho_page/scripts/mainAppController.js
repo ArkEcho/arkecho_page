@@ -16,8 +16,16 @@ controllers.ConnectionController = function($scope, $route)
 {   
     var webSocket_;
     var open_ = false;
+    var hide = 'hiddenImage';
 
-    $scope.connectClicked = function()
+    // Init
+    init();
+    function init(){
+        setDefaultImage();
+    }
+    //
+
+    $scope.connectClicked = function ()
     {
         var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!');
         if(address != '') openConnection(address);
@@ -47,6 +55,7 @@ controllers.ConnectionController = function($scope, $route)
                 $scope.albumTitle = song.AlbumTitle;
                 $scope.albumInterpret = song.AlbumInterpret;
                 $scope.coverArt = song.CoverArt;
+                setCoverArtImage();
             }
             $route.reload()
         }
@@ -66,6 +75,15 @@ controllers.ConnectionController = function($scope, $route)
         if(open_ == false) return;
         var json = '{ "Type": ' + type + ', "Message": "' + message + '" }';
         webSocket_.send(json);
+    }
+
+    function setDefaultImage(){
+        $scope.varDefaultImage = '';
+        $scope.varCoverArtImage = hide;
+    }
+    function setCoverArtImage(){
+        $scope.varDefaultImage = hide;
+        $scope.varCoverArtImage = '';
     }
 };
 

@@ -6,8 +6,8 @@
     Album:{{albumTitle}}<br />    
     Album-Interpret:{{albumInterpret}}<br />
     Cover Art: <br />
-    <!--<img src="./resources/player/defaultMusicIcon.png">-->
-    <img src="data:image/png;base64,{{coverArt}}"><br />
+    <img data-ng-class="varDefaultImage" src="./resources/player/defaultMusicIcon.png">
+    <img data-ng-class="varCoverArtImage" src="data:image/png;base64,{{coverArt}}"><br />
 </div>
 <div id="playerControl">
     <ul>
