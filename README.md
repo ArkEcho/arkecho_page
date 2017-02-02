@@ -1,4 +1,4 @@
-# ArkEcho Player, Page and App Development
+# ArkEcho Page Development
 
 - [Player] (https://github.com/stephan-z/arkecho_player)
 - [Page] (https://github.com/stephan-z/arkecho_page)
@@ -16,11 +16,10 @@ ArkEcho Player can play the following Audio Formats:
 - .mp3
 - .m4a
 
-### Project is under the MIT-License
-#### App, Page and 2Player are using:
+### App, Page and 2Player are using:
 - Material-Design-Icons [Github] (https://github.com/google/material-design-icons)
 
-### ArkEcho-Page is developed with HTML, CSS and JavaScript
+### ArkEcho-Page is developed with HTML, CSS and JavaScript and tested in Firefox
 #### The Page is using:
 - AngularJS, JavaScript MVC-Framework [Github] (https://github.com/angular)
 
@@ -40,5 +39,22 @@ ArkEcho Player can play the following Audio Formats:
 	"AlbumTitle": string,
 	"AlbumInterpret": string,
 	"CoverArt": string
+}
+```
+
+### JSON Songlist:
+```json
+{
+	[
+		"Key": int,
+		"Song": 
+		{		
+			"SongTitle": string,	
+			"SongInterpret": string,
+			"AlbumTitle": string,
+			"AlbumInterpret": string,
+			"CoverArt": string
+		}
+	]
 }
 ```
