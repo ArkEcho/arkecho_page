@@ -1,4 +1,4 @@
-{{home()}}
+{{homeViewOpened()}}
 <link rel="stylesheet" type="text/css" href="styles/viewHomeStyle.css">
 <div id="actualSongInfo">
     Titel:{{songTitle}}<br />    
@@ -6,5 +6,13 @@
     Album:{{albumTitle}}<br />    
     Album-Interpret:{{albumInterpret}}<br />
     Cover Art: <br />
-    <img src="data:image/png;base64,{{coverArt}}">
+    <!--<img src="./resources/player/defaultMusicIcon.png">-->
+    <img src="data:image/png;base64,{{coverArt}}"><br />
+</div>
+<div id="playerControl">
+    <ul>
+        <li><a data-ng-click=""><img alt="Rewind" src="./resources/player/rewindIcon.png"></a></li><li>&nbsp;</li>  
+        <li><a data-ng-click=""><img alt="Play/Pause" src="./resources/player/playPauseIcon.png"></a></li><li>&nbsp;</li>  
+        <li><a data-ng-click=""><img alt="Forward" src="./resources/player/forwardIcon.png"></a></li>
+    </ul>
 </div>

@@ -27,11 +27,13 @@
     <Content Include="resources\actionbar\iconHome.png" />
     <Content Include="resources\actionbar\iconMail.png" />
     <Content Include="resources\playerIcon.png" />
+    <Content Include="resources\player\defaultMusicIcon.png" />
     <Content Include="resources\player\forwardIcon.png" />
-    <Content Include="resources\player\playIcon.png" />
+    <Content Include="resources\player\playPauseIcon.png" />
     <Content Include="resources\player\rewindIcon.png" />
     <Content Include="scripts\angular\angular-animate.js" />
     <Content Include="scripts\angular\angular-aria.js" />
+    <Content Include="scripts\angular\angular-base64.js" />
     <Content Include="scripts\angular\angular-cookies.js" />
     <Content Include="scripts\angular\angular-csp.css" />
     <Content Include="scripts\angular\angular-loader.js" />

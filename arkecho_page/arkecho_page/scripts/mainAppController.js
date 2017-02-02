@@ -16,7 +16,6 @@ controllers.ConnectionController = function($scope, $route)
 {   
     var webSocket_;
     var open_ = false;
-    //var actualSongInfo_ = { songTitle:'', songInterpret:'', albumTitle:'', albumInterpret:'', coverArt:'' };
 
     $scope.connectClicked = function()
     {
@@ -93,19 +92,19 @@ controllers.NavigationController = function ($scope)
         $scope.varAboutLinkClass = '';
     }
 
-    $scope.home = function()
+    $scope.homeViewOpened = function ()
     {
         clearVars();
         $scope.varHomeLinkClass = active;
     }
 
-    $scope.contact = function()
+    $scope.contactViewOpened = function ()
     {
         clearVars();
         $scope.varContactLinkClass = active;
     }
 
-    $scope.about = function()
+    $scope.aboutViewOpened = function ()
     {
         clearVars();
         $scope.varAboutLinkClass = active;

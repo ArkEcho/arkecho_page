@@ -6,3 +6,32 @@
     width: 100px;
     height: 100px;
 }
+
+#playerControl ul{
+  display: inline-block; /* NOTE: Zum zentrieren der li's; nur bei vertikaler anordnung*/
+  list-style-type: none; /* NOTE: Kein Aufzählungszeichen */
+  overflow: hidden;
+}
+
+#playerControl li{
+  float: left; /* NOTE: li's vertikal anordnen */
+  height: 48px;
+}
+
+#playerControl li a {
+  display: block;
+  color: #eff0f1;
+  text-align: center;
+  height: 48px;
+  width: 60px;
+  padding: 4px 16px;
+  text-decoration: none; /* NOTE: Keine Hyperlink hilighting */
+}
+
+#playerControl li a img{
+  height: 40px;
+}
+
+#playerControl li a:hover{
+  background-color: #3daee9;
+}
