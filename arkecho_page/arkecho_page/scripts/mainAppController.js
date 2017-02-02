@@ -30,6 +30,9 @@ controllers.ConnectionController = function($scope, $route)
         var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!');
         if(address != '') openConnection(address);
     }
+    $scope.rewindClicked = function(){sendMessage(3, '');}
+    $scope.playPauseClicked = function(){sendMessage(2, '');}
+    $scope.forwardClicked = function () {sendMessage(4, '');}
 
     function openConnection(address)
     {
@@ -42,6 +45,7 @@ controllers.ConnectionController = function($scope, $route)
 
         webSocket_.onclose = function (evt) {
             open_ = false;
+            alert('Verbindung zum ArkEcho Player unterbrochen!');
         }
 
         webSocket_.onmessage = function (evt) {
@@ -77,6 +81,7 @@ controllers.ConnectionController = function($scope, $route)
         webSocket_.send(json);
     }
 
+    // Setzen des anzuzeigenden Bildes
     function setDefaultImage(){
         $scope.varDefaultImage = '';
         $scope.varCoverArtImage = hide;
@@ -85,6 +90,7 @@ controllers.ConnectionController = function($scope, $route)
         $scope.varDefaultImage = hide;
         $scope.varCoverArtImage = '';
     }
+    //
 };
 
 controllers.HomeController = function($scope)
