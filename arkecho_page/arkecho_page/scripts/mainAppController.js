@@ -13,20 +13,10 @@
 var controllers = {};
 
 controllers.ConnectionController = function($scope, $route)
-{
-    /* Refresh Timer to show the Actual Song Info after Receive */
-    setInterval(function () {
-        $scope.songTitle = actualSongInfo_.songTitle
-        $scope.songInterpret = actualSongInfo_.songInterpret;
-        $scope.albumTitle = actualSongInfo_.albumTitle;
-        $scope.albumInterpret = actualSongInfo_.albumInterpret;
-        //document.getElementById('coverArt').setAttribute('src', 'data:image/png;base64,' + actualSongInfo_.coverArt);
-        $route.reload()
-    }, 1000);
-    
+{   
     var webSocket_;
     var open_ = false;
-    var actualSongInfo_ = { songTitle:'', songInterpret:'', albumTitle:'', albumInterpret:'', coverArt:'' };
+    //var actualSongInfo_ = { songTitle:'', songInterpret:'', albumTitle:'', albumInterpret:'', coverArt:'' };
 
     $scope.connectClicked = function()
     {
@@ -53,12 +43,13 @@ controllers.ConnectionController = function($scope, $route)
             var message = json.Message;
             if (type == 6) {
                 var song = JSON.parse(message);
-                actualSongInfo_.songTitle = song.SongTitle;
-                actualSongInfo_.songInterpret = song.SongInterpret;
-                actualSongInfo_.albumTitle = song.AlbumTitle;
-                actualSongInfo_.albumInterpret = song.AlbumInterpret;
-                actualSongInfo_.coverArt = song.CoverArt;
+                $scope.songTitle = song.SongTitle;
+                $scope.songInterpret = song.SongInterpret;
+                $scope.albumTitle = song.AlbumTitle;
+                $scope.albumInterpret = song.AlbumInterpret;
+                $scope.coverArt = song.CoverArt;
             }
+            $route.reload()
         }
 
         webSocket_.onerror = function (evt) {
@@ -122,3 +113,13 @@ controllers.NavigationController = function ($scope)
 };
 
 mainApp.controller(controllers);
+
+/* Refresh Timer to show the Actual Song Info after Receive */
+/*setInterval(function () {
+    $scope.songTitle = actualSongInfo_.songTitle
+    $scope.songInterpret = actualSongInfo_.songInterpret;
+    $scope.albumTitle = actualSongInfo_.albumTitle;
+    $scope.albumInterpret = actualSongInfo_.albumInterpret;
+    //document.getElementById('coverArt').setAttribute('src', 'data:image/png;base64,' + actualSongInfo_.coverArt);
+    $route.reload()
+}, 1000);*/
