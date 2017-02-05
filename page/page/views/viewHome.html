@@ -1,13 +1,13 @@
 {{homeViewOpened()}}
 <link rel="stylesheet" type="text/css" href="styles/viewHomeStyle.css">
 <div id="actualSongInfo">
-    Titel:{{songTitle}}<br />    
-    Interpret:{{songInterpret}}<br />    
-    Album:{{albumTitle}}<br />    
-    Album-Interpret:{{albumInterpret}}<br />
-    Cover Art: <br />
     <img data-ng-class="varDefaultImage" src="./resources/player/defaultMusicIcon.png">
-    <img data-ng-class="varCoverArtImage" src="data:image/png;base64,{{coverArt}}"><br /><br /><br />
+    <img data-ng-class="varCoverArtImage" src="data:image/png;base64,{{coverArt}}"><br />
+    {{songTitle}}<br />    
+    {{songInterpret}}<br />    
+    {{albumTitle}}<br />    
+    {{albumInterpret}}<br />
+    <br /><br />
 </div>
 <div id="playerControl">
     <ul>

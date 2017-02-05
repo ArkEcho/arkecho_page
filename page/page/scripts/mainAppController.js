@@ -20,7 +20,11 @@ controllers.ConnectionController = function($scope, $route)
 
     // Init
     init();
-    function init(){
+    function init() {
+        $scope.songTitle = '<Kein Titel gestartet>';
+        $scope.songInterpret = '<Kein Titel gestartet>';
+        $scope.albumTitle = '<Kein Titel gestartet>';
+        $scope.albumInterpret = '<Kein Titel gestartet>';
         setDefaultImage();
     }
     //
