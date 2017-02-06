@@ -17,14 +17,15 @@ controllers.ConnectionController = function($scope, $route)
     var webSocket_;
     var open_ = false;
     var hide = 'hiddenImage';
+    var defaultText = '<Kein Titel gestartet>';
 
     // Init
     init();
     function init() {
-        $scope.songTitle = '<Kein Titel gestartet>';
-        $scope.songInterpret = '<Kein Titel gestartet>';
-        $scope.albumTitle = '<Kein Titel gestartet>';
-        $scope.albumInterpret = '<Kein Titel gestartet>';
+        $scope.songTitle = defaultText;
+        $scope.songInterpret = defaultText;
+        $scope.albumTitle = defaultText;
+        $scope.albumInterpret = defaultText;
         setDefaultImage();
     }
     //
@@ -140,13 +141,3 @@ controllers.NavigationController = function ($scope)
 };
 
 mainApp.controller(controllers);
-
-/* Refresh Timer to show the Actual Song Info after Receive */
-/*setInterval(function () {
-    $scope.songTitle = actualSongInfo_.songTitle
-    $scope.songInterpret = actualSongInfo_.songInterpret;
-    $scope.albumTitle = actualSongInfo_.albumTitle;
-    $scope.albumInterpret = actualSongInfo_.albumInterpret;
-    //document.getElementById('coverArt').setAttribute('src', 'data:image/png;base64,' + actualSongInfo_.coverArt);
-    $route.reload()
-}, 1000);*/
