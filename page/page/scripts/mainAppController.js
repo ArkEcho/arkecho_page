@@ -6,7 +6,9 @@
     MT_BACKWARD = 3,
     MT_FORWARD = 4,
     MT_REQUEST_SONG_ACTUAL = 5,
-    MT_SEND_SONG_ACTUAL = 6
+    MT_SEND_SONG_ACTUAL = 6,
+    MT_REQUEST_SONGLIST = 7,
+    MT_SEND_SONGLIST = 8
 }*/
 
 // Controller Definition
