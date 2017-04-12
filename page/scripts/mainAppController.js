@@ -1,15 +1,18 @@
-/*enum MESSAGETYPE
-{
-    MT_NOTDEFINED = 0,
-    MT_ECHO_TEST = 1,
-    MT_PLAY_PAUSE = 2,
-    MT_BACKWARD = 3,
-    MT_FORWARD = 4,
-    MT_REQUEST_SONG_ACTUAL = 5,
-    MT_SEND_SONG_ACTUAL = 6,
-    MT_REQUEST_SONGLIST = 7,
-    MT_SEND_SONGLIST = 8
-}*/
+// Mesagetype Definition
+var Messagetype = {}
+
+Messagetype.MT_NOTDEFINED = 0;
+Messagetype.MT_ECHO_TEST = 1;
+Messagetype.MT_PLAY_PAUSE = 2;
+Messagetype.MT_BACKWARD = 3;
+Messagetype.MT_FORWARD = 4;
+Messagetype.MT_REQUEST_SONG_ACTUAL = 5;
+Messagetype.MT_SEND_SONG_ACTUAL = 6;
+Messagetype.MT_REQUEST_SONGLIST = 7;
+Messagetype.MT_SEND_SONGLIST = 8;
+Messagetype.MT_SHUFFLE = 9;
+Messagetype.MT_STOP = 10;
+Messagetype.MT_VOLUME_VALUE = 11;
 
 // Controller Definition
 var controllers = {};
@@ -32,22 +35,33 @@ controllers.ConnectionController = function($scope, $route)
     }
     //
 
-    $scope.connectClicked = function ()
-    {
+    $scope.connectClicked = function (){
         var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!');
         if(address != '') openConnection(address);
     }
-    $scope.rewindClicked = function(){sendMessage(3, '');}
-    $scope.playPauseClicked = function(){sendMessage(2, '');}
-    $scope.forwardClicked = function () {sendMessage(4, '');}
+    $scope.rewindClicked = function(){
+        sendMessage(MessageType.MT_BACKWARD, '');
+    }
+    $scope.playPauseClicked = function(){
+        sendMessage(Messagetype.MT_PLAY_PAUSE, '');
+    }
+    $scope.forwardClicked = function () {
+        sendMessage(Messagetype.MT_FORWARD, '');
+    }
+    $scope.shuffleClicked = function () {
+        sendMessage(Messagetype.MT_SHUFFLE, '');
+    }
+    $scope.stopClicked = function () {
+        sendMessage(Messagetype.MT_STOP, '');
+    }
 
-    function openConnection(address)
-    {
+    // Set WebSocket and implement Events
+    function openConnection(address){
         webSocket_ = new WebSocket('ws://' + address);
 
         webSocket_.onopen = function (evt) {
             open_ = true;
-            sendMessage('5', '');
+            sendMessage(Messagetype.MT_REQUEST_SONG_ACTUAL, '');
         }
 
         webSocket_.onclose = function (evt) {
@@ -59,7 +73,7 @@ controllers.ConnectionController = function($scope, $route)
             var json = JSON.parse(evt.data);
             var type = json.Type;
             var message = json.Message;
-            if (type == 6) {
+            if (type == Messagetype.MT_SEND_SONG_ACTUAL) {
                 var song = JSON.parse(message);
                 $scope.songTitle = song.SongTitle;
                 $scope.songInterpret = song.SongInterpret;
@@ -76,13 +90,11 @@ controllers.ConnectionController = function($scope, $route)
         }
     }
 
-    function closeConnection()
-    {
+    function closeConnection()    {
         webSocket_.close();
     }
 
-    function sendMessage(type, message)
-    {
+    function sendMessage(type, message)    {
         if(open_ == false) return;
         var json = '{ "Type": ' + type + ', "Message": "' + message + '" }';
         webSocket_.send(json);
@@ -100,43 +112,35 @@ controllers.ConnectionController = function($scope, $route)
     //
 };
 
-controllers.HomeController = function($scope)
-{
+controllers.HomeController = function($scope){
 };
 
-controllers.ContactController = function($scope)
-{
+controllers.ContactController = function($scope){
 };
 
-controllers.AboutController = function($scope)
-{
+controllers.AboutController = function($scope){
 };
 
-controllers.NavigationController = function ($scope)
-{
+controllers.NavigationController = function ($scope){
     var active = 'navigationActive';
 
-    function clearVars()
-    {
+    function clearVars(){
         $scope.varHomeLinkClass = '';
         $scope.varContactLinkClass = '';
         $scope.varAboutLinkClass = '';
     }
 
-    $scope.homeViewOpened = function ()
-    {
+    $scope.homeViewOpened = function (){
         clearVars();
         $scope.varHomeLinkClass = active;
     }
 
-    $scope.contactViewOpened = function ()
-    {
+    $scope.contactViewOpened = function (){
         clearVars();
         $scope.varContactLinkClass = active;
     }
 
-    $scope.aboutViewOpened = function ()
-    {
+    $scope.aboutViewOpened = function (){
         clearVars();
         $scope.varAboutLinkClass = active;
     }
