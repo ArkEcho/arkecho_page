@@ -48,7 +48,14 @@ controllers.ConnectionController = function($scope, $route)
     $scope.forwardClicked = function () {
         sendMessage(Messagetype.MT_FORWARD, '');
     }
+    $scope.shuffleClicked = function () {
+        sendMessage(Messagetype.MT_SHUFFLE, '');
+    }
+    $scope.stopClicked = function () {
+        sendMessage(Messagetype.MT_STOP, '');
+    }
 
+    // Set WebSocket and implement Events
     function openConnection(address){
         webSocket_ = new WebSocket('ws://' + address);
 
