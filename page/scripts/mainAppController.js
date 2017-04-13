@@ -1,5 +1,5 @@
 // Mesagetype Definition
-var Messagetype = {}
+var Messagetype = {};
 
 Messagetype.MT_NOTDEFINED = 0;
 Messagetype.MT_ECHO_TEST = 1;
@@ -23,6 +23,9 @@ controllers.ConnectionController = function($scope, $route)
     var open_ = false;
     var hide = 'hiddenImage';
     var defaultText = '<Kein Titel gestartet>';
+
+    // Needed to access ng-model Data
+    $scope.inputData = { sliderVol: 100 };
 
     // Init
     init();
@@ -53,6 +56,9 @@ controllers.ConnectionController = function($scope, $route)
     }
     $scope.stopClicked = function () {
         sendMessage(Messagetype.MT_STOP, '');
+    }
+    $scope.onVolumeSliderChanged = function (){
+        sendMessage(Messagetype.MT_VOLUME_VALUE, $scope.inputData.sliderVol);
     }
 
     // Set WebSocket and implement Events
