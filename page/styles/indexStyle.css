@@ -4,14 +4,14 @@
 }
 
 html, body {
-    background-color: #3d4343;
+    background-color: #76797c;/*#3d4343;*/
     font-family: 'Roboto', sans-serif;
     color: #eff0f1;
     overflow-y: hidden;
 }
 
 #site{
-    background-color: #313636;
+    background-color: #31363b;
     position: absolute;
     width: 70%;
     height: 80%;
@@ -23,7 +23,7 @@ html, body {
 }
 
 #content{
-    background-color: #313636;
+    background-color: #31363b;
     text-align: center;
     position: relative;
     top: 48px;
