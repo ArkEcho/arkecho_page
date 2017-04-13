@@ -1,5 +1,5 @@
 // Mesagetype Definition
-var Messagetype = {}
+var Messagetype = {};
 
 Messagetype.MT_NOTDEFINED = 0;
 Messagetype.MT_ECHO_TEST = 1;
@@ -17,12 +17,14 @@ Messagetype.MT_VOLUME_VALUE = 11;
 // Controller Definition
 var controllers = {};
 
-controllers.ConnectionController = function($scope, $route)
+controllers.ConnectionController = function($scope, $route, $rootScope)
 {   
     var webSocket_;
     var open_ = false;
     var hide = 'hiddenImage';
     var defaultText = '<Kein Titel gestartet>';
+    var defaultCover = './resources/player/defaultMusicIcon.png';
+    var convertBase64Prefix = 'data:image/png;base64,';
 
     // Init
     init();
@@ -31,7 +33,7 @@ controllers.ConnectionController = function($scope, $route)
         $scope.songInterpret = defaultText;
         $scope.albumTitle = defaultText;
         $scope.albumInterpret = defaultText;
-        setDefaultImage();
+        $scope.albumCover = defaultCover;
     }
     //
 
@@ -39,21 +41,10 @@ controllers.ConnectionController = function($scope, $route)
         var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!');
         if(address != '') openConnection(address);
     }
-    $scope.rewindClicked = function(){
-        sendMessage(MessageType.MT_BACKWARD, '');
-    }
-    $scope.playPauseClicked = function(){
-        sendMessage(Messagetype.MT_PLAY_PAUSE, '');
-    }
-    $scope.forwardClicked = function () {
-        sendMessage(Messagetype.MT_FORWARD, '');
-    }
-    $scope.shuffleClicked = function () {
-        sendMessage(Messagetype.MT_SHUFFLE, '');
-    }
-    $scope.stopClicked = function () {
-        sendMessage(Messagetype.MT_STOP, '');
-    }
+    
+    $rootScope.$on("SendMessage", function(event, args){
+        sendMessage(args.type, args.msg);
+    });
 
     // Set WebSocket and implement Events
     function openConnection(address){
@@ -79,8 +70,7 @@ controllers.ConnectionController = function($scope, $route)
                 $scope.songInterpret = song.SongInterpret;
                 $scope.albumTitle = song.AlbumTitle;
                 $scope.albumInterpret = song.AlbumInterpret;
-                $scope.coverArt = song.CoverArt;
-                setCoverArtImage();
+                $scope.albumCover = convertBase64Prefix + song.CoverArt;
             }
             $route.reload()
         }
@@ -99,20 +89,30 @@ controllers.ConnectionController = function($scope, $route)
         var json = '{ "Type": ' + type + ', "Message": "' + message + '" }';
         webSocket_.send(json);
     }
-
-    // Setzen des anzuzeigenden Bildes
-    function setDefaultImage(){
-        $scope.varDefaultImage = '';
-        $scope.varCoverArtImage = hide;
-    }
-    function setCoverArtImage(){
-        $scope.varDefaultImage = hide;
-        $scope.varCoverArtImage = '';
-    }
-    //
 };
 
-controllers.HomeController = function($scope){
+controllers.HomeController = function($scope, $rootScope){
+    // Needed to access ng-model Data
+    $scope.inputData = { sliderVol: 100 };
+
+    $scope.rewindClicked = function(){
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_BACKWARD, msg: ''});
+    }
+    $scope.playPauseClicked = function(){
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_PLAY_PAUSE, msg: ''});
+    }
+    $scope.forwardClicked = function () {
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_FORWARD, msg: ''});
+    }
+    $scope.shuffleClicked = function () {
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_SHUFFLE, msg: ''});
+    }
+    $scope.stopClicked = function () {
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_STOP, msg: ''});
+    }
+    $scope.onVolumeSliderChanged = function (){
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_VOLUME_VALUE, msg: $scope.inputData.sliderVol});
+    }
 };
 
 controllers.ContactController = function($scope){
