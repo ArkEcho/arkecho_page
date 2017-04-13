@@ -35,7 +35,6 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
         $scope.albumInterpret = defaultText;
         $scope.albumCover = defaultCover;
     }
-    //
 
     $scope.connectClicked = function (){
         var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!');
