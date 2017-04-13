@@ -23,6 +23,8 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
     var open_ = false;
     var hide = 'hiddenImage';
     var defaultText = '<Kein Titel gestartet>';
+    var defaultCover = './resources/player/defaultMusicIcon.png';
+    var convertBase64Prefix = 'data:image/png;base64,';
 
     // Init
     init();
@@ -31,7 +33,7 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
         $scope.songInterpret = defaultText;
         $scope.albumTitle = defaultText;
         $scope.albumInterpret = defaultText;
-        setDefaultImage();
+        $scope.albumCover = defaultCover;
     }
     //
 
@@ -68,8 +70,7 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
                 $scope.songInterpret = song.SongInterpret;
                 $scope.albumTitle = song.AlbumTitle;
                 $scope.albumInterpret = song.AlbumInterpret;
-                $scope.coverArt = song.CoverArt;
-                setCoverArtImage();
+                $scope.albumCover = convertBase64Prefix + song.CoverArt;
             }
             $route.reload()
         }
@@ -88,17 +89,6 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
         var json = '{ "Type": ' + type + ', "Message": "' + message + '" }';
         webSocket_.send(json);
     }
-
-    // Setzen des anzuzeigenden Bildes
-    function setDefaultImage(){
-        $scope.varDefaultImage = '';
-        $scope.varCoverArtImage = hide;
-    }
-    function setCoverArtImage(){
-        $scope.varDefaultImage = hide;
-        $scope.varCoverArtImage = '';
-    }
-    //
 };
 
 controllers.HomeController = function($scope, $rootScope){

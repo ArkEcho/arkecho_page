@@ -3,10 +3,6 @@
     height: 100px;
 }
 
-.hiddenImage{
-    display: none;
-}
-
 #playerControl ul{
     display: inline-block; /* NOTE: Zum zentrieren der li's; nur bei vertikaler anordnung*/
     list-style-type: none; /* NOTE: Kein Aufz�hlungszeichen */
@@ -16,16 +12,16 @@
 #playerControl li{
     float: left; /* NOTE: li's vertikal anordnen */
     height: 48px;
-    border: 1px solid #ffffff;
+    border: 1px solid #76797c;
+    border-radius: 5px;
     margin-right: 5px;
 }
 
 #playerControl li a {
     display: block;
-    color: #eff0f1;
     text-align: center;
-    height: 48px;
     width: 60px;
+    border-radius: inherit;
     padding: 4px 16px;
     text-decoration: none; /* NOTE: Kein Hyperlink hilighting */
 }
@@ -46,23 +42,13 @@
 input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;
-  width: 100%;
+  width: 100px;
 }
 input[type=range]:focus {
   outline: none;
 }
 
 /* Slider Track */
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 5px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 1px 1px 1px #000000;
-  background: #76797c;
-  border-radius: 5px;
-  border: 0px solid #010101;
-}
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 5px;
@@ -73,61 +59,11 @@ input[type=range]::-moz-range-track {
   border-radius: 5px;
   border: 0px solid #010101;
 }
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 5px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  background: #76797c;
-  border: 0px solid #010101;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px #000000;
-}
-input[type=range]::-ms-fill-upper {
-  background: #76797c;
-  border: 0px solid #010101;
-  border-radius: 5px;
-  box-shadow: 1px 1px 1px #000000;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #76797c;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #76797c;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #76797c;
-}
 
 /* Slider Boppel */
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000031;
-  border: 1px solid #00001E;
-  height: 20px;
-  width: 20px;
-  border-radius: 15px;
-  background: #242828;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -8px;
-}
 input[type=range]::-moz-range-thumb {
   box-shadow: 1px 1px 1px #000031;
   border: 1px solid #76797c;
-  height: 20px;
-  width: 20px;
-  border-radius: 15px;
-  background: #242828;
-  cursor: pointer;
-}
-input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #000031;
-  border: 1px solid #00001E;
   height: 20px;
   width: 20px;
   border-radius: 15px;

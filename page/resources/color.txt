@@ -1,0 +1,10 @@
+ArkEcho Player Color:
+
+Main Color:         #31363b; // Grey
+Darker Main Color:  #242828; // Dark-Grey
+Light Main Color:   #76797c; // Light-Grey
+
+Highlight Color 1:  #3daee9; // Light-Blue
+Highlight Color 2:  #4caf50; // Light-Green
+
+Element Color:      #eff0f1; // White

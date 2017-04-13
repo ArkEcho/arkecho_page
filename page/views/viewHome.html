@@ -4,8 +4,7 @@
 
 </div>
 <div id="actualSongInfo">
-    <img data-ng-class="varDefaultImage" src="./resources/player/defaultMusicIcon.png">
-    <img data-ng-class="varCoverArtImage" src="data:image/png;base64,{{coverArt}}"><br />
+    <img alt="Album Cover" data-ng-src="{{albumCover}}"><br />
     {{songTitle}}<br />    
     {{songInterpret}}<br />    
     {{albumTitle}}<br />    
@@ -19,7 +18,7 @@
         <li><a data-ng-click="playPauseClicked()"><img alt="Play/Pause" src="./resources/player/playPauseIcon.png"></a></li> 
         <li><a data-ng-click="forwardClicked()"><img alt="Forward" src="./resources/player/forwardIcon.png"></a></li>
         <li><a data-ng-click="stopClicked()"><img alt="Stop" src="./resources/player/stopIcon.png"></a></li>
+        <li><input id="sliderVolume" data-ng-model="inputData.sliderVol" data-ng-change="onVolumeSliderChanged()" 
+            type="range" min="0" max="100" step="1"></li><li>{{inputData.sliderVol}}</li>
     </ul>
-    <input id="sliderVolume" data-ng-model="inputData.sliderVol" data-ng-change="onVolumeSliderChanged()" 
-            type="range" min="0" max="100" step="1">{{inputData.sliderVol}}
 </div>
