@@ -24,9 +24,6 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
     var hide = 'hiddenImage';
     var defaultText = '<Kein Titel gestartet>';
 
-    // Needed to access ng-model Data
-    $scope.inputData = { sliderVol: 100 };
-
     // Init
     init();
     function init() {
@@ -42,24 +39,10 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
         var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!');
         if(address != '') openConnection(address);
     }
-    $scope.rewindClicked = function(){
-        sendMessage(Messagetype.MT_BACKWARD, '');
-    }
-    $scope.playPauseClicked = function(){
-        sendMessage(Messagetype.MT_PLAY_PAUSE, '');
-    }
-    $scope.forwardClicked = function () {
-        sendMessage(Messagetype.MT_FORWARD, '');
-    }
-    $scope.shuffleClicked = function () {
-        sendMessage(Messagetype.MT_SHUFFLE, '');
-    }
-    $scope.stopClicked = function () {
-        sendMessage(Messagetype.MT_STOP, '');
-    }
-    $scope.onVolumeSliderChanged = function (){
-        sendMessage(Messagetype.MT_VOLUME_VALUE, $scope.inputData.sliderVol);
-    }
+    
+    $rootScope.$on("SendMessage", function(event, args){
+        sendMessage(args.type, args.msg);
+    });
 
     // Set WebSocket and implement Events
     function openConnection(address){
@@ -119,6 +102,27 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
 };
 
 controllers.HomeController = function($scope, $rootScope){
+    // Needed to access ng-model Data
+    $scope.inputData = { sliderVol: 100 };
+
+    $scope.rewindClicked = function(){
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_BACKWARD, msg: ''});
+    }
+    $scope.playPauseClicked = function(){
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_PLAY_PAUSE, msg: ''});
+    }
+    $scope.forwardClicked = function () {
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_FORWARD, msg: ''});
+    }
+    $scope.shuffleClicked = function () {
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_SHUFFLE, msg: ''});
+    }
+    $scope.stopClicked = function () {
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_STOP, msg: ''});
+    }
+    $scope.onVolumeSliderChanged = function (){
+        $rootScope.$emit("SendMessage",{type: Messagetype.MT_VOLUME_VALUE, msg: $scope.inputData.sliderVol});
+    }
 };
 
 controllers.ContactController = function($scope){
