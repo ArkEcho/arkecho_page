@@ -17,7 +17,7 @@ Messagetype.MT_VOLUME_VALUE = 11;
 // Controller Definition
 var controllers = {};
 
-controllers.ConnectionController = function($scope, $route)
+controllers.ConnectionController = function($scope, $route, $rootScope)
 {   
     var webSocket_;
     var open_ = false;
@@ -43,7 +43,7 @@ controllers.ConnectionController = function($scope, $route)
         if(address != '') openConnection(address);
     }
     $scope.rewindClicked = function(){
-        sendMessage(MessageType.MT_BACKWARD, '');
+        sendMessage(Messagetype.MT_BACKWARD, '');
     }
     $scope.playPauseClicked = function(){
         sendMessage(Messagetype.MT_PLAY_PAUSE, '');
@@ -118,7 +118,7 @@ controllers.ConnectionController = function($scope, $route)
     //
 };
 
-controllers.HomeController = function($scope){
+controllers.HomeController = function($scope, $rootScope){
 };
 
 controllers.ContactController = function($scope){
