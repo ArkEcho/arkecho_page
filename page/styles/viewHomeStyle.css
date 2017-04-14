@@ -8,7 +8,6 @@
     list-style-type: none; /* NOTE: Kein Aufz�hlungszeichen */
     overflow: hidden;
 }
-
 #playerControl li{
     float: left; /* NOTE: li's vertikal anordnen */
     height: 48px;
@@ -16,7 +15,18 @@
     border-radius: 5px;
     margin-right: 5px;
 }
-
+#playerControl li.volumeSlider{
+    border: none;
+    padding: 5px 0px;
+}
+#playerControl li.volumeText{
+    border: none;
+    padding: 12px 0px;
+    width: 30px;
+}
+#playerControl li:last-child{
+    margin-right: 0px;
+}
 #playerControl li a {
     display: block;
     text-align: center;
@@ -25,17 +35,11 @@
     padding: 4px 16px;
     text-decoration: none; /* NOTE: Kein Hyperlink hilighting */
 }
-
 #playerControl li a img{
     height: 40px;
 }
-
 #playerControl li a:hover{
     background-color: #3daee9;
-}
-
-#playerControl li:last-child{
-    margin-right: 0px;
 }
 
 /* Slider Style */
