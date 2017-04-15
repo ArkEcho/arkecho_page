@@ -37,7 +37,7 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
     }
 
     $scope.connectClicked = function (){
-        var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!');
+        var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!', 'localhost:1000');
         if(address != '') openConnection(address);
     }
     
