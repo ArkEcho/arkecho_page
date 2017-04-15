@@ -6,8 +6,8 @@ mainApp.config(function($routeProvider)
     $routeProvider
         .when('/',
         {
-            controller: 'HomeController',
-            templateUrl: 'views/viewHome.html'
+            controller: 'SonglistController',
+            templateUrl: 'views/viewSonglist.html'
         })
         .when('/contact',
         {

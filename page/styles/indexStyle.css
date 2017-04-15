@@ -84,3 +84,81 @@ html, body {
 .navigationActive{
     background-color: #4caf50;
 }
+
+/* PLAYER CONTROL AND SONG INFO */
+#actualSongInfo img{
+    width: 100px;
+    height: 100px;
+}
+
+#playerControl ul{
+    display: inline-block; /* NOTE: Zum zentrieren der li's; nur bei vertikaler anordnung*/
+    list-style-type: none; /* NOTE: Kein Aufz�hlungszeichen */
+    overflow: hidden;
+}
+#playerControl li{
+    float: left; /* NOTE: li's vertikal anordnen */
+    height: 48px;
+    border: 1px solid #76797c;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+#playerControl li.volumeSlider{
+    border: none;
+    padding: 5px 0px;
+}
+#playerControl li.volumeText{
+    border: none;
+    padding: 12px 0px;
+    width: 30px;
+}
+#playerControl li:last-child{
+    margin-right: 0px;
+}
+#playerControl li a {
+    display: block;
+    text-align: center;
+    width: 60px;
+    border-radius: inherit;
+    padding: 4px 16px;
+    text-decoration: none; /* NOTE: Kein Hyperlink hilighting */
+}
+#playerControl li a img{
+    height: 40px;
+}
+#playerControl li a:hover{
+    background-color: #3daee9;
+}
+
+/* Slider Style */
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
+  width: 100px;
+}
+input[type=range]:focus {
+  outline: none;
+}
+
+/* Slider Track */
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: #76797c;
+  border-radius: 5px;
+  border: 0px solid #010101;
+}
+
+/* Slider Boppel */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000031;
+  border: 1px solid #76797c;
+  height: 20px;
+  width: 20px;
+  border-radius: 15px;
+  background: #242828;
+  cursor: pointer;
+}

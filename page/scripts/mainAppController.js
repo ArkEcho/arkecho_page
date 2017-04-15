@@ -90,7 +90,7 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
     }
 };
 
-controllers.HomeController = function($scope, $rootScope){
+controllers.PlayerController = function($scope, $rootScope){
     // Needed to access ng-model Data
     $scope.inputData = { sliderVol: 100 };
 
@@ -114,6 +114,9 @@ controllers.HomeController = function($scope, $rootScope){
     }
 };
 
+controllers.SonglistController = function($scope){
+    
+};
 controllers.ContactController = function($scope){
 };
 
@@ -124,14 +127,14 @@ controllers.NavigationController = function ($scope){
     var active = 'navigationActive';
 
     function clearVars(){
-        $scope.varHomeLinkClass = '';
+        $scope.varSonglistLinkClass = '';
         $scope.varContactLinkClass = '';
         $scope.varAboutLinkClass = '';
     }
 
-    $scope.homeViewOpened = function (){
+    $scope.songlistViewOpened = function (){
         clearVars();
-        $scope.varHomeLinkClass = active;
+        $scope.varSonglistLinkClass = active;
     }
 
     $scope.contactViewOpened = function (){
