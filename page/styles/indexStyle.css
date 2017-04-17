@@ -22,16 +22,30 @@ html, body {
     border-radius: 10px;
 }
 
-#content{
-    background-color: #31363b;
+#playerControl{
+    background-color: inherit;
     text-align: center;
     position: relative;
-    top: 48px;
-    padding: 20px;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
+    width: calc(30% - 25px); /* Minus the border right and Padding */
+    height: calc(100% - 68px); /* Height minus Actionbar and Padding */
+    float: left;
+    border-right: 5px solid #242828;
+    padding: 10px;
+    border-bottom-left-radius: inherit;  
 }
 
+#content{
+    background-color: inherit;
+    text-align: center;
+    position: relative;
+    width: calc(70% - 20px);
+    height: calc(100% - 68px);
+    float: left;
+    padding: 10px;
+    border-bottom-right-radius: inherit; 
+}
+
+/* ACTION BAR */
 #actionbar{
     background-color: #242828; /* NOTE: Farbe der Navigation Bar */
     text-align: center;
@@ -42,27 +56,35 @@ html, body {
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
 }
-
 #actionbar ul{
     display: inline-block; /* NOTE: Zum zentrieren der li's; nur bei vertikaler anordnung*/
     list-style-type: none; /* NOTE: Kein Aufzählungszeichen */
     overflow: hidden;
     height: inherit;
 }
-
 #actionbar li{
     float: left; /* NOTE: li's vertikal anordnen */
     height: inherit;
 }
-
+#actionbar li #circle{
+    width: 48px;
+    height: 48px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    border-radius: 24px;
+}
+#actionbar li #circle.connected{
+    background: #4caf50;
+}
+#actionbar li #circle.disconnected{
+    background: #ff1111;
+}
 #actionbar li h2{
     padding: 10px;
 }
-
 #actionbar li img{
     height: inherit;
 }
-
 #actionbar li a {
     display: block;
     color: #eff0f1;
@@ -72,15 +94,98 @@ html, body {
     padding: 4px 16px;
     text-decoration: none; /* NOTE: Keine Hyperlink hilighting */
 }
-
 #actionbar li a img{
     height: 40px;
 }
-
 #actionbar li a:hover:not(.navigationActive){
     background-color: #3daee9;
 }
-
 .navigationActive{
     background-color: #4caf50;
+}
+
+/* PLAYER CONTROL AND SONG INFO */
+#actualSongInfo img{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 2px;
+}
+
+#control ul{
+    display: inline-block; /* NOTE: Zum zentrieren der li's; nur bei vertikaler anordnung*/
+    list-style-type: none; /* NOTE: Kein Aufz�hlungszeichen */
+    overflow: hidden;
+}
+#control li{
+    float: left; /* NOTE: li's vertikal anordnen */
+    height: 40px;
+    border: 1px solid #76797c;
+    border-radius: 5px;
+    margin-right: 2px;
+    margin-top: 4px;
+}
+#control li.volumeSlider{
+    border: none;
+    width: 150px;  
+    padding: 5px 0px;
+}
+#control li.volumeText{
+    border: none;
+    padding: 12px 0px;
+    width: 50px;
+}
+#control li:last-child{
+    margin-right: 0px;
+}
+#control li a {
+    display: block;
+    text-align: center;
+    width: 50px;
+    border-radius: inherit;
+    padding: 0px 16px;
+    text-decoration: none; /* NOTE: Kein Hyperlink hilighting */
+}
+#control li a.playPause{
+    padding: 0px 16px;
+}
+#control li a img{
+    height: 40px;
+}
+#control li a:hover{
+    background-color: #3daee9;
+}
+#control li a:active{
+    background-color: #eff0f1;
+}
+
+/* Slider Style */
+input[type=range] {
+  margin: 10px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+
+/* Slider Track */
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000;
+  background: #76797c;
+  border-radius: 5px;
+  border: 0px solid #010101;
+}
+
+/* Slider Boppel */
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000031;
+  border: 1px solid #76797c;
+  height: 20px;
+  width: 20px;
+  border-radius: 15px;
+  background: #242828;
+  cursor: pointer;
 }
