@@ -21,6 +21,7 @@ html, body {
     right: 15%;
     border-radius: 10px;
 }
+
 #playerControl{
     background-color: inherit;
     text-align: center;
@@ -32,6 +33,7 @@ html, body {
     padding: 10px;
     border-bottom-left-radius: inherit;  
 }
+
 #content{
     background-color: inherit;
     text-align: center;
@@ -42,6 +44,8 @@ html, body {
     padding: 10px;
     border-bottom-right-radius: inherit; 
 }
+
+/* ACTION BAR */
 #actionbar{
     background-color: #242828; /* NOTE: Farbe der Navigation Bar */
     text-align: center;
@@ -52,27 +56,35 @@ html, body {
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
 }
-
 #actionbar ul{
     display: inline-block; /* NOTE: Zum zentrieren der li's; nur bei vertikaler anordnung*/
     list-style-type: none; /* NOTE: Kein Aufzählungszeichen */
     overflow: hidden;
     height: inherit;
 }
-
 #actionbar li{
     float: left; /* NOTE: li's vertikal anordnen */
     height: inherit;
 }
-
+#actionbar li #circle{
+    width: 48px;
+    height: 48px;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    border-radius: 24px;
+}
+#actionbar li #circle.connected{
+    background: #4caf50;
+}
+#actionbar li #circle.disconnected{
+    background: #ff1111;
+}
 #actionbar li h2{
     padding: 10px;
 }
-
 #actionbar li img{
     height: inherit;
 }
-
 #actionbar li a {
     display: block;
     color: #eff0f1;
@@ -82,15 +94,12 @@ html, body {
     padding: 4px 16px;
     text-decoration: none; /* NOTE: Keine Hyperlink hilighting */
 }
-
 #actionbar li a img{
     height: 40px;
 }
-
 #actionbar li a:hover:not(.navigationActive){
     background-color: #3daee9;
 }
-
 .navigationActive{
     background-color: #4caf50;
 }
@@ -99,7 +108,7 @@ html, body {
 #actualSongInfo img{
     width: 150px;
     height: 150px;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
 }
 
 #control ul{
