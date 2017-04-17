@@ -24,13 +24,14 @@
           <li> <a data-ng-class="varContactLinkClass" href="#!contact"><img alt="Contact" src="resources/actionbar/iconMail.png"></a></li><li> &nbsp; </li>
           <li> <a data-ng-class="varAboutLinkClass" href="#!about"><img alt="About" src="resources/actionbar/iconHelp.png"></a></li><li> &nbsp; &nbsp;</li>
           <li> <a data-ng-click="connectClicked()"><img alt="Connect" src="resources/actionbar/iconConnect.png"></a></li>
+          <li><div id="circle" data-ng-class="connectionStatusClass"></div></li>
         </ul>
       </div>
       <div id="playerControl" data-ng-controller="PlayerController">
         <div id="actualSongInfo">
             <img alt="Album Cover" data-ng-src="{{albumCover}}"><br />
             {{songTitle}}<br />    
-            {{songInterpret}}<br />    
+            {{songInterpret}}<br /><br /> 
             {{albumTitle}}<br />    
             {{albumInterpret}}<br />
             <br /><br />

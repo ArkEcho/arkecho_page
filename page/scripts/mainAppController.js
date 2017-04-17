@@ -34,11 +34,12 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
         $scope.albumTitle = defaultText;
         $scope.albumInterpret = defaultText;
         $scope.albumCover = defaultCover;
+        disconnected();
     }
 
     $scope.connectClicked = function (){
         var address = prompt('Bitte die Adresse des ArkEcho-Players eingeben!', 'localhost:1000');
-        if(address != '') openConnection(address);
+        if(address != '' && address !== null) openConnection(address);
     }
     
     $rootScope.$on("SendMessage", function(event, args){
@@ -51,12 +52,14 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
 
         webSocket_.onopen = function (evt) {
             open_ = true;
+            connected();
             sendMessage(Messagetype.MT_REQUEST_SONG_ACTUAL, '');
         }
 
         webSocket_.onclose = function (evt) {
             open_ = false;
-            alert('Verbindung zum ArkEcho Player unterbrochen!');
+            disconnected();
+            $route.reload()
         }
 
         webSocket_.onmessage = function (evt) {
@@ -79,14 +82,17 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
         }
     }
 
-    function closeConnection()    {
-        webSocket_.close();
-    }
-
     function sendMessage(type, message)    {
         if(open_ == false) return;
         var json = '{ "Type": ' + type + ', "Message": "' + message + '" }';
         webSocket_.send(json);
+    }
+
+    function connected(){
+        $scope.connectionStatusClass = 'connected';
+    }
+    function disconnected(){
+        $scope.connectionStatusClass = 'disconnected';
     }
 };
 
