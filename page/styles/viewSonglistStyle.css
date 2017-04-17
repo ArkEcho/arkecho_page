@@ -1,13 +1,17 @@
+#songList{
+  height: 100%;
+  border: 1px solid black;
+}
+
 #songList table {
   border-collapse: collapse;
-  width: 100%;
-  height: 100px;
 }
 #songList table th{
     background: #334e5e;
 }
 #songList table td, table th {
   border: 1px solid #76797c;
+  word-wrap: break-word;
 }
 #songList table tr:first-child th {
   border-top: 0;

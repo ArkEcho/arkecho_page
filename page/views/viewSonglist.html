@@ -15,7 +15,7 @@
             <td>{{ x.Song.AlbumSongNumber }}</td>
             <td>{{ x.Song.SongTitle }}</td>
             <td>{{ x.Song.SongInterpret }}</td>
-            <td>{{ x.Song.SongDuration }}</td>
+            <td>{{ convertMillisecondToMinSec(x.Song.SongDuration) }}</td>
         </tr>
     </table>
     <div data-ng-show="!songList.length > 0">Keine Songs geladen</div>
