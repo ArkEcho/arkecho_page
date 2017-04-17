@@ -1,4 +1,22 @@
 {{songlistViewOpened()}}
 <link rel="stylesheet" type="text/css" href="styles/viewSonglistStyle.css">
-<div id="songList">
+<div id="songList">    
+    <table data-ng-show="songList.length > 0">
+        <tr>
+            <th>Album</th>
+            <th>Nr.</th>
+            <th>Titel</th>
+            <th>Interpret</th>
+            <th>Dauer</th>
+        </tr>
+        <tr data-ng-repeat="x in songList">
+            <!-- <td>{{ $index + 1 }}</td> -->
+            <td>{{ x.Song.AlbumTitle }}</td>
+            <td>{{ x.Song.AlbumSongNumber }}</td>
+            <td>{{ x.Song.SongTitle }}</td>
+            <td>{{ x.Song.SongInterpret }}</td>
+            <td>{{ x.Song.SongDuration }}</td>
+        </tr>
+    </table>
+    <div data-ng-show="!songList.length > 0">Keine Songs geladen</div>
 </div>
