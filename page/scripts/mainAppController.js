@@ -21,7 +21,6 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
 {   
     var webSocket_;
     var open_ = false;
-    var hide = 'hiddenImage';
     var defaultText = '<Kein Titel gestartet>';
     var defaultCover = './resources/player/defaultMusicIcon.png';
     var convertBase64Prefix = 'data:image/png;base64,';
@@ -54,6 +53,7 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
             open_ = true;
             connected();
             sendMessage(Messagetype.MT_REQUEST_SONG_ACTUAL, '');
+            sendMessage(Messagetype.MT_REQUEST_SONGLIST, '');
         }
 
         webSocket_.onclose = function (evt) {
@@ -73,6 +73,10 @@ controllers.ConnectionController = function($scope, $route, $rootScope)
                 $scope.albumTitle = song.AlbumTitle;
                 $scope.albumInterpret = song.AlbumInterpret;
                 $scope.albumCover = convertBase64Prefix + song.CoverArt;
+            }
+            else if(type == Messagetype.MT_SEND_SONGLIST){
+                var songlist = JSON.parse(message);
+                $scope.songList = songlist.SongList;
             }
             $route.reload()
         }
@@ -121,7 +125,11 @@ controllers.PlayerController = function($scope, $rootScope){
 };
 
 controllers.SonglistController = function($scope){
-    
+    $scope.convertMillisecondToMinSec = function(millisecond){
+        var minutes = Math.floor(millisecond / 60000);
+        var seconds = ((millisecond % 60000) / 1000).toFixed(0);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
 };
 controllers.ContactController = function($scope){
 };
