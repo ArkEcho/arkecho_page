@@ -1,0 +1,46 @@
+#songList{
+  height: 100%;
+}
+#songList table {
+  border-collapse: collapse;
+  height: 100%;
+  table-layout: fixed;
+  overflow-y: scroll;
+  display: block;
+}
+#songList table th{
+    background: #334e5e;
+}
+#songList table td, table th {
+  border: 1px solid #76797c;
+}
+#songList table tr:first-child th {
+  border-top: 0;
+}
+#songList table tr:last-child td {
+  border-bottom: 0;
+}
+#songList table tr td:first-child,
+#songList table tr th:first-child {
+  border-left: 0;
+}
+#songList table tr td:last-child,
+#songList table tr th:last-child {
+  border-right: 0;
+}
+
+#songList table tr th.songListTableAlbum{
+  width: 38%;
+}
+#songList table tr th.songListTableNumber{
+  width: 4%;
+}
+#songList table tr th.songListTableTitle{
+  width: 38%;  
+}
+#songList table tr th.songListTableInterpret{
+  width: 15%;  
+}
+#songList table tr th.songListTableDuration{
+  width: 5%;  
+}
